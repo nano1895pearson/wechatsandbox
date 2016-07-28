@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     puts request.body.read
     puts Nokogiri
     xml = Nokogiri.XML(request.body.read)
-    puts xml.children
+    puts xml.inspect
     puts 'yay'
     from = xml.xpath("//FromUserName").text
     to = xml.xpath("//ToUserName").text
