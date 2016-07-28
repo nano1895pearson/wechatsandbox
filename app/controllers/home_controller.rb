@@ -6,7 +6,14 @@ class HomeController < ApplicationController
   end
 
   def get_verify
-    render plain: wechat_request_isvalid ? params[:echostr] : ''
+    response = "<xml>" \
+           "<ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName>" \
+           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]></FromUserName>" \
+           "<CreateTime>#{Time.now.to_i}</CreateTime>" \
+           "<MsgType><![CDATA[text]]></MsgType>" \
+           "<Content><![CDATA[Hello]]></Content>" \
+         "</xml>"
+    render xml: response
   end
 
   def post_verify
@@ -24,7 +31,7 @@ class HomeController < ApplicationController
            "<Content><![CDATA[Hello]]></Content>" \
          "</xml>"
     puts response
-    render plain: response
+    render plain: "<xml><ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName></xml>"
   end
 
   private
