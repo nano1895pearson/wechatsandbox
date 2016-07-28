@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  require 'nokogiri'
   skip_before_action :verify_authenticity_token
   def index
     @signature = generate_signature
@@ -9,7 +10,6 @@ class HomeController < ApplicationController
   end
 
   def post_verify
-    require 'Nokogiri'
     puts params
     puts request.body.read
     if wechat_request_isvalid
