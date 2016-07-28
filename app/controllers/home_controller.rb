@@ -6,33 +6,21 @@ class HomeController < ApplicationController
   end
 
   def get_verify
-    response = "<xml>" \
-           "<ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName>" \
-           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]]></FromUserName>" \
-           "<CreateTime>#{Time.now.to_i}</CreateTime>" \
-           "<MsgType><![CDATA[text]]></MsgType>" \
-           "<Content><![CDATA[Hello]]></Content>" \
-         "</xml>"
-    render xml: response
+    render plain: wechat_requeset_isvalid ? params[:echostr] : ''
   end
 
   def post_verify
-    puts request.body.read
-    puts Nokogiri
     xml = Nokogiri.XML(request.body.read)
     puts xml.inspect
-    puts 'yay'
     from = xml.xpath("//FromUserName").text
     to = xml.xpath("//ToUserName").text
-    puts "#{from}, #{to}"
     response = "<xml>" \
-           "<ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName>" \
-           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]]></FromUserName>" \
+           "<ToUserName><![CDATA[#{from}]]></ToUserName>" \
+           "<FromUserName><![CDATA[#{to}]]></FromUserName>" \
            "<CreateTime>#{Time.now.to_i}</CreateTime>" \
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
          "</xml>"
-    puts response
     render text: response
   end
 
