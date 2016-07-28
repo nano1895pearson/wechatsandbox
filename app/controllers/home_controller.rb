@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   def post_verify
     puts request.body.read
     xml = Nokogiri::XML(request.body.read)
-    xml.remove_namespaces!
+    puts xml.children
     puts 'yay'
     from = xml.xpath("//FromUserName").text
     to = xml.xpath("//ToUserName").text
