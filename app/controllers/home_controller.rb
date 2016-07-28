@@ -8,6 +8,7 @@ class HomeController < ApplicationController
   end
 
   def post_verify
+    puts params
     if wechat_request_isvalid
       puts params
     end
