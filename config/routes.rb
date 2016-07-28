@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'home/verify'
-
   root 'home#index'
+
+  get '/verify', to:'home#verify'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
