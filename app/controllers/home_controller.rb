@@ -18,6 +18,7 @@ class HomeController < ApplicationController
     xml = Nokogiri::XML(request.body.read)
     from = xml.xpath("//FromUserName").text
     to = xml.xpath("//ToUserName").text
+    puts "#{from}, #{to}"
     response = "<xml>" \
            "<ToUserName><![CDATA[#{from}]]></ToUserName>" \
            "<FromUserName><![CDATA[#{to}]></FromUserName>" \
@@ -25,6 +26,7 @@ class HomeController < ApplicationController
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
          "</xml>"
+    puts response
     render plain: response
   end
 
