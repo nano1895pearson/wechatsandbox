@@ -11,7 +11,6 @@ class HomeController < ApplicationController
 
   def post_verify
     xml = Nokogiri.XML(request.body.read)
-    puts xml.inspect
     from = xml.xpath("//FromUserName").text
     to = xml.xpath("//ToUserName").text
     response = "<xml>" \
@@ -21,7 +20,7 @@ class HomeController < ApplicationController
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
          "</xml>"
-    render text: response
+    render xml: response
   end
 
   private
