@@ -17,8 +17,8 @@ class HomeController < ApplicationController
     to = xml.xpath("//ToUserName").text
     puts "#{from}, #{to}"
     response = "<xml>" \
-           "<ToUserName><![CDATA[#{from}]]></ToUserName>" \
-           "<FromUserName><![CDATA[#{to}]></FromUserName>" \
+           "<ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName>" \
+           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]></FromUserName>" \
            "<CreateTime>#{Time.now.to_i}</CreateTime>" \
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
