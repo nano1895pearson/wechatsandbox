@@ -8,10 +8,10 @@ class HomeController < ApplicationController
   end
 
   def post_verify
-    Rails.logger.debug 'Received message!'
     if wechat_request_isvalid
-      Rails.logger.debug params
+      puts params
     end
+    render plain: ''
   end
 
   private
