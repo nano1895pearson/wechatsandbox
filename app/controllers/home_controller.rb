@@ -3,8 +3,15 @@ class HomeController < ApplicationController
     @signature = generate_signature
   end
 
-  def verify
+  def get_verify
     render plain: wechat_request_isvalid ? params[:echostr] : ''
+  end
+
+  def post_verify
+    Rails.logger.debug 'Received message!'
+    if wechat_request_isvalid
+      Rails.logger.debug params
+    end
   end
 
   private
