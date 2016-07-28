@@ -19,12 +19,12 @@ class HomeController < ApplicationController
     response = "<xml>" \
            "<ToUserName><![CDATA[#{from}]]></ToUserName>" \
            "<FromUserName><![CDATA[#{to}]></FromUserName>" \
-           "<CreateTime>12345678</CreateTime>" \
+           "<CreateTime>#{Time.now.to_i}</CreateTime>" \
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
          "</xml>"
     puts response
-    render plain: ''
+    render plain: response
   end
 
   private
