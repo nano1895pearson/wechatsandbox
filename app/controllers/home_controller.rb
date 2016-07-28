@@ -9,12 +9,22 @@ class HomeController < ApplicationController
   end
 
   def post_verify
+    require 'Nokogiri'
     puts params
     puts request.body.read
     if wechat_request_isvalid
       puts params
     end
-    render plain: ''
+    xml = Nokogiri::XML(request.body.read)
+    from = xml.xpath("//FromUserName").text
+    to = xml.xpath("//ToUserName").text
+    render plain: "<xml>
+                     <ToUserName><![CDATA[#{from}]]></ToUserName>
+                     <FromUserName><![CDATA[#{to}]></FromUserName>
+                     <CreateTime>12345678</CreateTime>
+                     <MsgType><![CDATA[text]]></MsgType>
+                     <Content><![CDATA[Hello]]></Content>
+                   </xml>"
   end
 
   private
