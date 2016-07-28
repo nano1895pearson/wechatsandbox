@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   def get_verify
     response = "<xml>" \
            "<ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName>" \
-           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]></FromUserName>" \
+           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]]></FromUserName>" \
            "<CreateTime>#{Time.now.to_i}</CreateTime>" \
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
@@ -25,13 +25,13 @@ class HomeController < ApplicationController
     puts "#{from}, #{to}"
     response = "<xml>" \
            "<ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName>" \
-           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]></FromUserName>" \
+           "<FromUserName><![CDATA[gh_c40e9d3ca7d1]]></FromUserName>" \
            "<CreateTime>#{Time.now.to_i}</CreateTime>" \
            "<MsgType><![CDATA[text]]></MsgType>" \
            "<Content><![CDATA[Hello]]></Content>" \
          "</xml>"
     puts response
-    render plain: "<xml><ToUserName><![CDATA[oxfVfwDgABpSKk2ZIgdDhKLtwLNY]]></ToUserName></xml>"
+    render text: response
   end
 
   private
