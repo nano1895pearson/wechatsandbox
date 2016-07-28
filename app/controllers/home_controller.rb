@@ -1,10 +1,26 @@
 class HomeController < ApplicationController
+  require 'nokogiri'
+  skip_before_action :verify_authenticity_token
   def index
     @signature = generate_signature
   end
 
-  def verify
-    render plain: wechat_request_isvalid ? params[:echostr] : ''
+  def get_verify
+    render plain: wechat_requeset_isvalid ? params[:echostr] : ''
+  end
+
+  def post_verify
+    xml = Nokogiri.XML(request.body.read)
+    from = xml.xpath("//FromUserName").text
+    to = xml.xpath("//ToUserName").text
+    response = "<xml>" \
+           "<ToUserName><![CDATA[#{from}]]></ToUserName>" \
+           "<FromUserName><![CDATA[#{to}]]></FromUserName>" \
+           "<CreateTime>#{Time.now.to_i}</CreateTime>" \
+           "<MsgType><![CDATA[text]]></MsgType>" \
+           "<Content><![CDATA[Hello]]></Content>" \
+         "</xml>"
+    render xml: response
   end
 
   private
