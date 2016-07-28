@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     else
       @echo_str = ''
     end
+    render text: @echo_str, content_type: 'text/plain'
   end
 
   private
