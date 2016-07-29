@@ -19,5 +19,18 @@ $(function(){
     }
     });
 
+    wx.onMenuShareTimeline({
+    title: 'Example', // Sharing title
+    link: 'http://www.example.com', // Sharing link
+    imgUrl: '', // Sharing image URL
+    success: function () {
+        // Callback function executed after a user confirms sharing
+        console.log("YAY!")
+    },
+    cancel: function () {
+        // Callback function executed after a user cancels sharing
+    }
+    });
+
   });
 })
